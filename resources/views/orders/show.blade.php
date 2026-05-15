@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Detail Pesanan - PizzArt')
 
@@ -19,7 +19,7 @@
                     <p class="text-sm font-black uppercase text-orange-600">Detail pesanan</p>
                     <h1 class="mt-2 text-4xl font-black text-[#2b0700]">Order #{{ $order->id }}</h1>
                 </div>
-                <a href="{{ route('orders.list') }}" class="inline-flex h-11 items-center justify-center rounded-md border border-black/10 bg-white px-5 text-sm font-black uppercase text-[#2b0700] transition hover:border-orange-300 hover:text-orange-600">
+                <a href="{{ route('admin.orders.list') }}" class="inline-flex h-11 items-center justify-center rounded-md border border-black/10 bg-white px-5 text-sm font-black uppercase text-[#2b0700] transition hover:border-orange-300 hover:text-orange-600">
                     Kembali
                 </a>
             </div>
@@ -63,7 +63,7 @@
                 </div>
 
                 <aside class="h-max rounded-lg border border-black/10 bg-white p-5 shadow-sm">
-                    <p class="text-sm font-black uppercase text-orange-600">Receipt</p>
+                    <p class="text-sm font-black uppercase text-orange-600">Ringkasan Pesanan</p>
                     <div class="mt-5 space-y-4 text-sm">
                         <div class="flex items-center justify-between gap-4">
                             <span class="font-black uppercase text-[#6b4a37]">Pelanggan</span>
@@ -87,16 +87,16 @@
                     </div>
 
                     @if($order->status == 'pending')
-                        <form action="{{ route('orders.pay', $order->id) }}" method="POST" class="mt-5">
+                        <form action="{{ route('admin.orders.pay', $order->id) }}" method="POST" class="mt-5">
                             @csrf
                             @method('PATCH')
-                            <button type="submit" class="inline-flex h-12 w-full items-center justify-center rounded-md bg-[#2d6a32] px-6 text-sm font-black uppercase text-white transition hover:bg-[#245427]" onclick="return confirm('Apakah pelanggan sudah membayar dan pesanan selesai?')">
-                                Selesaikan & Bayar
+                            <button type="submit" class="inline-flex h-12 w-full items-center justify-center rounded-md bg-[#2d6a32] px-6 text-sm font-black uppercase text-white transition hover:bg-[#245427]" onclick="return confirm('Tandai pesanan ini sebagai sudah dibayar?')">
+                                Tandai Sudah Dibayar
                             </button>
                         </form>
                     @else
                         <button class="mt-5 inline-flex h-12 w-full cursor-not-allowed items-center justify-center rounded-md bg-[#6b4a37] px-6 text-sm font-black uppercase text-white opacity-70" disabled>
-                            Pesanan Selesai
+                            Sudah Dibayar
                         </button>
                     @endif
                 </aside>

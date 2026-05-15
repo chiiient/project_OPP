@@ -7,16 +7,6 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="min-h-screen bg-[#fffaf3] text-[#1f120c] antialiased">
-    @php
-        $navItems = [
-            ['label' => 'Home', 'route' => 'home', 'active' => 'home'],
-            ['label' => 'Kasir', 'route' => 'orders.index', 'active' => 'orders.index'],
-            ['label' => 'Pesanan', 'route' => 'orders.list', 'active' => ['orders.list', 'orders.show']],
-            ['label' => 'Menu', 'route' => 'products.index', 'active' => 'products.*'],
-            ['label' => 'Kategori', 'route' => 'categories.index', 'active' => 'categories.*'],
-        ];
-    @endphp
-
     <header class="sticky top-0 z-50 border-b border-black/10 bg-white/95 shadow-[0_8px_24px_rgba(31,18,12,0.10)] backdrop-blur">
         <nav class="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
             <a href="{{ route('home') }}" class="flex items-center gap-3">
@@ -25,24 +15,16 @@
             </a>
 
             <div class="hidden items-center gap-7 md:flex">
-                @foreach ($navItems as $item)
-                    @php
-                        $isActive = request()->routeIs(...(array) $item['active']);
-                    @endphp
-                    <a
-                        href="{{ route($item['route']) }}"
-                        class="nav-link {{ $isActive ? 'nav-link-active' : '' }}"
-                    >
-                        {{ $item['label'] }}
-                    </a>
-                @endforeach
+                <a href="{{ route('home') }}#Home" class="nav-link">Home</a>
+                <a href="{{ route('home') }}#About" class="nav-link">Our Story</a>
+                <a href="{{ route('home') }}#Menu" class="nav-link">Menu</a>
+                <a href="{{ route('home') }}#Gallery" class="nav-link">Gallery</a>
+                <a href="{{ route('home') }}#Contact" class="nav-link">Contact</a>
             </div>
 
-            <div class="hidden items-center gap-2 md:flex">
-                <a href="{{ route('home') }}#Menu" class="inline-flex h-11 items-center rounded-md bg-orange-500 px-5 text-sm font-bold text-white shadow-sm transition hover:bg-orange-600">
-                    Order Now
-                </a>
-            </div>
+            <a href="{{ route('client.orders.index') }}" class="hidden h-11 items-center rounded-md bg-orange-500 px-5 text-sm font-bold text-white shadow-sm transition hover:bg-orange-600 md:inline-flex">
+                Order Now
+            </a>
 
             <details class="group relative md:hidden">
                 <summary class="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-md border border-black/10 bg-white text-[#2b0700] shadow-sm">
@@ -55,14 +37,12 @@
                     </svg>
                 </summary>
                 <div class="absolute right-0 mt-3 w-56 rounded-lg border border-black/10 bg-white p-2 shadow-xl">
-                    @foreach ($navItems as $item)
-                        <a
-                            href="{{ route($item['route']) }}"
-                            class="block rounded-md px-4 py-3 text-sm font-bold uppercase text-[#2b0700] transition hover:bg-orange-50 hover:text-orange-600"
-                        >
-                            {{ $item['label'] }}
-                        </a>
-                    @endforeach
+                    <a href="{{ route('home') }}#Home" class="block rounded-md px-4 py-3 text-sm font-bold uppercase text-[#2b0700] transition hover:bg-orange-50 hover:text-orange-600">Home</a>
+                    <a href="{{ route('home') }}#About" class="block rounded-md px-4 py-3 text-sm font-bold uppercase text-[#2b0700] transition hover:bg-orange-50 hover:text-orange-600">Our Story</a>
+                    <a href="{{ route('home') }}#Menu" class="block rounded-md px-4 py-3 text-sm font-bold uppercase text-[#2b0700] transition hover:bg-orange-50 hover:text-orange-600">Menu</a>
+                    <a href="{{ route('home') }}#Gallery" class="block rounded-md px-4 py-3 text-sm font-bold uppercase text-[#2b0700] transition hover:bg-orange-50 hover:text-orange-600">Gallery</a>
+                    <a href="{{ route('home') }}#Contact" class="block rounded-md px-4 py-3 text-sm font-bold uppercase text-[#2b0700] transition hover:bg-orange-50 hover:text-orange-600">Contact</a>
+                    <a href="{{ route('client.orders.index') }}" class="block rounded-md px-4 py-3 text-sm font-bold uppercase text-orange-600 transition hover:bg-orange-50">Order Now</a>
                 </div>
             </details>
         </nav>
@@ -101,9 +81,9 @@
                     <span class="text-2xl font-black">Pizz<span class="text-orange-400">Art</span></span>
                 </a>
                 <p class="mt-5 max-w-sm text-sm font-medium leading-7 text-white/70">
-                    Pizza hangat, topping melimpah, dan alur kasir yang bantu restoran ngatur menu, pesanan, sampai pembayaran dalam satu tempat.
+                    Pizza hangat, topping melimpah, dan suasana makan yang nyaman untuk setiap kunjungan.
                 </p>
-                <a href="{{ route('home') }}#Menu" class="mt-6 inline-flex h-11 items-center rounded-md bg-orange-500 px-5 text-sm font-black uppercase text-white transition hover:bg-orange-600">
+                <a href="{{ route('client.orders.index') }}" class="mt-6 inline-flex h-11 items-center rounded-md bg-orange-500 px-5 text-sm font-black uppercase text-white transition hover:bg-orange-600">
                     Order Now
                 </a>
             </div>
@@ -111,21 +91,22 @@
             <div>
                 <h2 class="text-sm font-black uppercase tracking-wide text-orange-300">Navigasi</h2>
                 <div class="mt-5 grid gap-3 text-sm font-bold text-white/75">
-                    @foreach ($navItems as $item)
-                        <a href="{{ route($item['route']) }}" class="transition hover:text-orange-300">
-                            {{ $item['label'] }}
-                        </a>
-                    @endforeach
+                    <a href="{{ route('home') }}#Home" class="transition hover:text-orange-300">Home</a>
+                    <a href="{{ route('home') }}#About" class="transition hover:text-orange-300">Our Story</a>
+                    <a href="{{ route('home') }}#Menu" class="transition hover:text-orange-300">Menu</a>
+                    <a href="{{ route('home') }}#Gallery" class="transition hover:text-orange-300">Gallery</a>
+                    <a href="{{ route('home') }}#Contact" class="transition hover:text-orange-300">Contact</a>
+                    <a href="{{ route('client.orders.index') }}" class="transition hover:text-orange-300">Order</a>
                 </div>
             </div>
 
             <div>
-                <h2 class="text-sm font-black uppercase tracking-wide text-orange-300">Layanan</h2>
+                <h2 class="text-sm font-black uppercase tracking-wide text-orange-300">Favorit</h2>
                 <div class="mt-5 grid gap-3 text-sm font-bold text-white/75">
-                    <p>Input pesanan</p>
-                    <p>Kelola menu</p>
-                    <p>Status pembayaran</p>
-                    <p>Laporan pesanan</p>
+                    <p>Fresh pizza</p>
+                    <p>Cheesy toppings</p>
+                    <p>Dine-in order</p>
+                    <p>Fast service</p>
                 </div>
             </div>
 
@@ -151,7 +132,7 @@
         <div class="border-t border-white/10 px-4 py-5 sm:px-6 lg:px-8">
             <div class="mx-auto flex max-w-7xl flex-col gap-3 text-xs font-bold uppercase text-white/50 sm:flex-row sm:items-center sm:justify-between">
                 <p>&copy; {{ date('Y') }} PizzArt Fresh & Tasty.</p>
-                <p>Built for menu, cashier, and restaurant order flow.</p>
+                <p>Fresh pizza, simple ordering, better service.</p>
             </div>
         </div>
     </footer>

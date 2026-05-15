@@ -1,6 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Daftar Menu - PizzArt')
+@section('adminHeading', 'Manajemen Menu')
 
 @section('content')
     <section class="px-4 py-10 sm:px-6 lg:px-8">
@@ -13,7 +14,7 @@
                         Kelola foto, kategori, harga, dan status ketersediaan menu.
                     </p>
                 </div>
-                <a href="{{ route('products.create') }}" class="inline-flex h-12 items-center justify-center rounded-md bg-orange-500 px-5 text-sm font-black uppercase text-white transition hover:bg-orange-600">
+                <a href="{{ route('admin.products.create') }}" class="inline-flex h-12 items-center justify-center rounded-md bg-orange-500 px-5 text-sm font-black uppercase text-white transition hover:bg-orange-600">
                     Tambah Menu
                 </a>
             </div>
@@ -63,10 +64,10 @@
                                     </td>
                                     <td class="px-5 py-4">
                                         <div class="flex items-center justify-end gap-2">
-                                            <a href="{{ route('products.edit', $product->id) }}" class="inline-flex h-10 items-center rounded-md border border-black/10 bg-white px-4 text-sm font-black text-[#2b0700] transition hover:border-orange-300 hover:text-orange-600">
+                                            <a href="{{ route('admin.products.edit', $product->id) }}" class="inline-flex h-10 items-center rounded-md border border-black/10 bg-white px-4 text-sm font-black text-[#2b0700] transition hover:border-orange-300 hover:text-orange-600">
                                                 Edit
                                             </a>
-                                            <form action="{{ route('products.destroy', $product->id) }}" method="POST">
+                                            <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="inline-flex h-10 items-center rounded-md bg-red-600 px-4 text-sm font-black text-white transition hover:bg-red-700" onclick="return confirm('Apakah kamu yakin ingin menghapus menu ini?')">

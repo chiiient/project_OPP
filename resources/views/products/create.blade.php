@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Tambah Menu - PizzArt')
 
@@ -10,12 +10,12 @@
                     <p class="text-sm font-black uppercase text-orange-600">Menu baru</p>
                     <h1 class="mt-2 text-4xl font-black text-[#2b0700]">Tambah Menu Pizza</h1>
                 </div>
-                <a href="{{ route('products.index') }}" class="inline-flex h-11 items-center justify-center rounded-md border border-black/10 bg-white px-5 text-sm font-black uppercase text-[#2b0700] transition hover:border-orange-300 hover:text-orange-600">
+                <a href="{{ route('admin.products.index') }}" class="inline-flex h-11 items-center justify-center rounded-md border border-black/10 bg-white px-5 text-sm font-black uppercase text-[#2b0700] transition hover:border-orange-300 hover:text-orange-600">
                     Kembali
                 </a>
             </div>
 
-            <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data" class="rounded-lg border border-black/10 bg-white p-5 shadow-sm sm:p-7">
+            <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data" class="rounded-lg border border-black/10 bg-white p-5 shadow-sm sm:p-7">
                 @csrf
 
                 <div class="grid gap-5 md:grid-cols-2">

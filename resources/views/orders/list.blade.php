@@ -1,6 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Daftar Pesanan - PizzArt')
+@section('adminHeading', 'Daftar Pesanan')
 
 @section('content')
     <section class="px-4 py-10 sm:px-6 lg:px-8">
@@ -10,10 +11,10 @@
                     <p class="text-sm font-black uppercase text-orange-600">Order tracking</p>
                     <h1 class="mt-2 text-4xl font-black text-[#2b0700]">Daftar Pesanan</h1>
                     <p class="mt-3 max-w-2xl text-sm font-medium leading-6 text-[#5b4537]">
-                        Pantau pesanan terbaru, cek detail item, dan selesaikan pembayaran.
+                        Pantau semua pesanan yang masuk dari pelanggan, cek detail item, dan perbarui status pembayarannya.
                     </p>
                 </div>
-                <a href="{{ route('orders.index') }}" class="inline-flex h-12 items-center justify-center rounded-md bg-orange-500 px-5 text-sm font-black uppercase text-white transition hover:bg-orange-600">
+                <a href="{{ route('admin.orders.index') }}" class="inline-flex h-12 items-center justify-center rounded-md bg-orange-500 px-5 text-sm font-black uppercase text-white transition hover:bg-orange-600">
                     Tambah Pesanan
                 </a>
             </div>
@@ -54,7 +55,7 @@
                                     </td>
                                     <td class="whitespace-nowrap px-5 py-4 text-sm font-medium text-[#6b4a37]">{{ $order->created_at->format('d M Y, H:i') }}</td>
                                     <td class="px-5 py-4 text-right">
-                                        <a href="{{ route('orders.show', $order->id) }}" class="inline-flex h-10 items-center rounded-md border border-black/10 bg-white px-4 text-sm font-black text-[#2b0700] transition hover:border-orange-300 hover:text-orange-600">
+                                        <a href="{{ route('admin.orders.show', $order->id) }}" class="inline-flex h-10 items-center rounded-md border border-black/10 bg-white px-4 text-sm font-black text-[#2b0700] transition hover:border-orange-300 hover:text-orange-600">
                                             Detail
                                         </a>
                                     </td>
@@ -63,7 +64,7 @@
                                 <tr>
                                     <td colspan="7" class="px-5 py-14 text-center">
                                         <p class="text-lg font-black text-[#2b0700]">Belum ada pesanan.</p>
-                                        <p class="mt-2 text-sm font-medium text-[#6b4a37]">Buat pesanan baru dari halaman kasir.</p>
+                                        <p class="mt-2 text-sm font-medium text-[#6b4a37]">Pesanan pelanggan yang sudah checkout akan tampil di sini.</p>
                                     </td>
                                 </tr>
                             @endforelse

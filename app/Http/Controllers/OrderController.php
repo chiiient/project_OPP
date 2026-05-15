@@ -6,6 +6,15 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+    public function clientIndex()
+    {
+        $products = \App\Models\Product::with('category')
+            ->where('is_available', true)
+            ->get();
+
+        return view('client.order', compact('products'));
+    }
+
     public function index()
     {
         // Ambil produk agar bisa dipilih di halaman kasir
@@ -13,6 +22,26 @@ class OrderController extends Controller
         return view('orders.index', compact('products'));
     }
     public function store(Request $request)
+    {
+        $order = $this->createOrderFromRequest($request);
+        if (! $order instanceof \App\Models\Order) {
+            return $order;
+        }
+
+        return redirect()->route('admin.orders.index')->with('success', 'Pesanan berhasil diproses!');
+    }
+
+    public function clientStore(Request $request)
+    {
+        $order = $this->createOrderFromRequest($request);
+        if (! $order instanceof \App\Models\Order) {
+            return $order;
+        }
+
+        return redirect()->route('client.orders.success', $order->id)->with('success', 'Pesanan berhasil diproses!');
+    }
+
+    private function createOrderFromRequest(Request $request)
     {
         $items = $request->input('items', []);
 
@@ -53,8 +82,17 @@ class OrderController extends Controller
                 ]);
             }
         }
-        return redirect()->route('orders.index')->with('success', 'Pesanan berhasil diproses!');
+
+        return $order;
     }
+
+    public function clientSuccess($id)
+    {
+        $order = \App\Models\Order::with('details.product')->findOrFail($id);
+
+        return view('client.order-success', compact('order'));
+    }
+
     public function show_all()
     {
         // Ambil semua order, urutkan dari yang terbaru
@@ -74,6 +112,6 @@ class OrderController extends Controller
         $order->status = 'paid';
         $order->save();
 
-        return redirect()->route('orders.list')->with('success', 'Pesanan berhasil diselesaikan/dibayar!');
+        return redirect()->route('admin.orders.list')->with('success', 'Pesanan berhasil diselesaikan/dibayar!');
     }
 }

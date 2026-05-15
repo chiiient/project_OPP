@@ -25,7 +25,7 @@ class CategoryController extends Controller
     {
         $request->validate(['name' => 'required']);
         Category::create($request->all());
-        return redirect()->route('categories.index');
+        return redirect()->route('admin.categories.index');
     }
 
     // Menampilkan form edit data
@@ -39,13 +39,13 @@ class CategoryController extends Controller
     {
         $request->validate(['name' => 'required']);
         $category->update($request->all());
-        return redirect()->route('categories.index');
+        return redirect()->route('admin.categories.index');
     }
 
     // Menghapus data dari database
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->route('categories.index');
+        return redirect()->route('admin.categories.index');
     }
 }

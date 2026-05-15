@@ -43,7 +43,7 @@ class ProductController extends Controller
         // Simpan ke database
         \App\Models\Product::create($data);
 
-        return redirect()->route('products.index')->with('success', 'Menu berhasil ditambahkan!');
+        return redirect()->route('admin.products.index')->with('success', 'Menu berhasil ditambahkan!');
     }
 
 
@@ -76,7 +76,7 @@ class ProductController extends Controller
 
         $product->update($data);
 
-        return redirect()->route('products.index')->with('success', 'Menu berhasil diupdate!');
+        return redirect()->route('admin.products.index')->with('success', 'Menu berhasil diupdate!');
     }
 
     public function destroy($id)
@@ -94,6 +94,6 @@ class ProductController extends Controller
         // Hapus data dari database
         $product->delete();
 
-        return redirect()->route('products.index')->with('success', 'Menu berhasil dihapus!');
+        return redirect()->route('admin.products.index')->with('success', 'Menu berhasil dihapus!');
     }
 }

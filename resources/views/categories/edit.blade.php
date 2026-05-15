@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Edit Kategori - PizzArt')
 
@@ -10,12 +10,12 @@
                     <p class="text-sm font-black uppercase text-orange-600">Edit kategori</p>
                     <h1 class="mt-2 text-4xl font-black text-[#2b0700]">{{ $category->name }}</h1>
                 </div>
-                <a href="{{ route('categories.index') }}" class="inline-flex h-11 items-center justify-center rounded-md border border-black/10 bg-white px-5 text-sm font-black uppercase text-[#2b0700] transition hover:border-orange-300 hover:text-orange-600">
+                <a href="{{ route('admin.categories.index') }}" class="inline-flex h-11 items-center justify-center rounded-md border border-black/10 bg-white px-5 text-sm font-black uppercase text-[#2b0700] transition hover:border-orange-300 hover:text-orange-600">
                     Kembali
                 </a>
             </div>
 
-            <form action="{{ route('categories.update', $category->id) }}" method="POST" class="rounded-lg border border-black/10 bg-white p-5 shadow-sm sm:p-7">
+            <form action="{{ route('admin.categories.update', $category->id) }}" method="POST" class="rounded-lg border border-black/10 bg-white p-5 shadow-sm sm:p-7">
                 @csrf
                 @method('PUT')
                 <label class="label" for="name">Nama Kategori</label>

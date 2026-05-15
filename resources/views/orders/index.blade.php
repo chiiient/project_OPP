@@ -1,6 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Kasir - PizzArt')
+@section('adminHeading', 'Kasir')
 
 @section('content')
     <section class="px-4 py-10 sm:px-6 lg:px-8">
@@ -13,12 +14,12 @@
                         Pilih menu pizza, atur jumlah, lalu simpan pesanan pelanggan.
                     </p>
                 </div>
-                <a href="{{ route('orders.list') }}" class="inline-flex h-11 items-center justify-center rounded-md border border-black/10 bg-white px-5 text-sm font-black uppercase text-[#2b0700] transition hover:border-orange-300 hover:text-orange-600">
+                <a href="{{ route('admin.orders.list') }}" class="inline-flex h-11 items-center justify-center rounded-md border border-black/10 bg-white px-5 text-sm font-black uppercase text-[#2b0700] transition hover:border-orange-300 hover:text-orange-600">
                     Daftar Pesanan
                 </a>
             </div>
 
-            <form action="{{ route('orders.store') }}" method="POST" id="order-form" class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
+            <form action="{{ route('admin.orders.store') }}" method="POST" id="order-form" class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
                 @csrf
 
                 <div>
@@ -74,7 +75,7 @@
                             <div class="rounded-lg border border-black/10 bg-white p-8 text-center shadow-sm sm:col-span-2 xl:col-span-3">
                                 <p class="text-lg font-black text-[#2b0700]">Belum ada menu.</p>
                                 <p class="mt-2 text-sm font-medium text-[#6b4a37]">Tambah menu dulu sebelum membuat pesanan.</p>
-                                <a href="{{ route('products.create') }}" class="mt-5 inline-flex h-11 items-center rounded-md bg-orange-500 px-5 text-sm font-black uppercase text-white transition hover:bg-orange-600">
+                                <a href="{{ route('admin.products.create') }}" class="mt-5 inline-flex h-11 items-center rounded-md bg-orange-500 px-5 text-sm font-black uppercase text-white transition hover:bg-orange-600">
                                     Tambah Menu
                                 </a>
                             </div>
