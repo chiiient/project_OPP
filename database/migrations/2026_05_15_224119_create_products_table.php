@@ -11,15 +11,15 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->id(); // Primary Key
-            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
+            $table->id();
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->string('name');
-            $table->text('description')->nullable();
-            $table->integer('price'); // Gunakan integer untuk harga (Rupiah) tanpa desimal
+            $table->integer('price');
             $table->string('image')->nullable();
-            $table->boolean('is_available')->default(true); // Default menu tersedia
+            $table->boolean('is_available')->default(true);
             $table->timestamps();
         });
+        ;
     }
 
     /**

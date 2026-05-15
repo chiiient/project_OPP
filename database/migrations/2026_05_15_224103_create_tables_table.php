@@ -10,12 +10,10 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('tables', function (Blueprint $table) {
             $table->id();
-            $table->string('customer_name'); // Nama pemesan
-            $table->integer('table_number'); // Nomor meja
-            $table->integer('total_price');  // Total bayar
-            $table->enum('status', ['pending', 'paid', 'cancelled'])->default('pending');
+            $table->string('number');
+            $table->enum('status', ['available', 'occupied'])->default('available');
             $table->timestamps();
         });
     }
@@ -25,6 +23,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('tables');
     }
 };

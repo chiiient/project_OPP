@@ -11,12 +11,12 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->id(); // Primary Key
+            $table->id();
+            $table->foreignId('user_id')->nullable()->constrained(); // Kasir/Admin
+            $table->foreignId('table_id')->nullable()->constrained(); // Meja
             $table->string('customer_name')->nullable();
-            $table->string('table_number')->nullable();
             $table->integer('total_price')->default(0);
             $table->enum('status', ['pending', 'processing', 'completed', 'canceled'])->default('pending');
-            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
             $table->timestamps();
         });
     }

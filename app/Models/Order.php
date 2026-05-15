@@ -1,28 +1,30 @@
 <?php
 
 namespace App\Models;
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
-{   
-    protected $fillable = [
-        'customer_name', 'table_number', 'total_price', 'status', 'user_id'
-    ];
+{
+    use HasFactory;
 
-    // Relasi: 1 Pesanan diproses oleh 1 User (Kasir)
+    protected $fillable = ['user_id', 'table_id', 'customer_name', 'total_price', 'status'];
+
+    // Relasi: Pesanan ini dilayani oleh seorang User (Kasir/Admin)
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    // Relasi: 1 Pesanan memiliki banyak Detail Pesanan
-    public function orderDetails()
+    // Relasi: Pesanan ini ditempatkan di meja tertentu
+    public function table()
     {
-        return $this->hasMany(OrderDetail::class);
+        return $this->belongsTo(Table::class);
     }
-    public function details()
-{
-    return $this->hasMany(OrderDetail::class);
-}
+
+    // Relasi: Satu pesanan memiliki banyak item pizza yang dibeli
+    public function items()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
 }
