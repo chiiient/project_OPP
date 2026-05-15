@@ -14,12 +14,21 @@ class OrderController extends Controller
     }
     public function store(Request $request)
     {
+        $items = $request->input('items', []);
+
         // 1. Hitung total harga dari semua item yang diisi qty-nya
         $totalPrice = 0;
-        foreach ($request->items as $item) {
-            if ($item['qty'] > 0) {
-                $totalPrice += $item['qty'] * $item['price'];
+        foreach ($items as $item) {
+            $qty = (int) ($item['qty'] ?? 0);
+            $price = (int) ($item['price'] ?? 0);
+
+            if ($qty > 0) {
+                $totalPrice += $qty * $price;
             }
+        }
+
+        if ($totalPrice <= 0) {
+            return back()->withErrors(['items' => 'Pilih minimal satu menu untuk membuat pesanan.'])->withInput();
         }
 
         // 2. Simpan ke tabel orders
@@ -31,14 +40,16 @@ class OrderController extends Controller
         ]);
 
         // 3. Simpan rincian per produk ke tabel order_details
-        foreach ($request->items as $productId => $item) {
-            // Di dalam foreach fungsi store()
-            if ($item['qty'] > 0) {
+        foreach ($items as $productId => $item) {
+            $qty = (int) ($item['qty'] ?? 0);
+            $price = (int) ($item['price'] ?? 0);
+
+            if ($qty > 0) {
                 \App\Models\OrderDetail::create([
                     'order_id' => $order->id,
                     'product_id' => $productId,
-                    'quantity' => $item['qty'], // GANTI INI JADI quantity
-                    'subtotal' => $item['qty'] * $item['price'],
+                    'quantity' => $qty,
+                    'subtotal' => $qty * $price,
                 ]);
             }
         }

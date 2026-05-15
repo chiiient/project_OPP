@@ -10,14 +10,8 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
-            $table->id();
-            $table->string('customer_name'); // Nama pemesan
-            $table->integer('table_number'); // Nomor meja
-            $table->integer('total_price');  // Total bayar
-            $table->enum('status', ['pending', 'paid', 'cancelled'])->default('pending');
-            $table->timestamps();
-        });
+        // Kept as a no-op because the orders table is already created by
+        // 2026_05_13_204750_create_orders_table.php.
     }
 
     /**
@@ -25,6 +19,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        //
     }
 };

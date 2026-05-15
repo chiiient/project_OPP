@@ -10,16 +10,8 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('order_details', function (Blueprint $table) {
-            Schema::create('order_details', function (Blueprint $table) {
-                $table->id();
-                $table->foreignId('order_id')->constrained()->onDelete('cascade');
-                $table->foreignId('product_id')->constrained();
-                $table->integer('qty');
-                $table->integer('subtotal');
-                $table->timestamps();
-            });
-        });
+        // Kept as a no-op because the order_details table is already created by
+        // 2026_05_13_204919_create_order_details_table.php.
     }
 
     /**
@@ -27,6 +19,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_details');
+        //
     }
 };

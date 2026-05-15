@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('customer_name')->nullable();
             $table->string('table_number')->nullable();
             $table->integer('total_price')->default(0);
-            $table->enum('status', ['pending', 'processing', 'completed', 'canceled'])->default('pending');
+            $table->enum('status', ['pending', 'paid', 'cancelled'])->default('pending');
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
             $table->timestamps();
         });
