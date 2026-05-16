@@ -1,6 +1,4 @@
 <?php
-
-<<<<<<< HEAD
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\TableController;
@@ -27,17 +25,3 @@ Route::prefix('admin')->group(function () {
     Route::get('/orders/{id}', [OrderController::class, 'show'])->name('admin.orders.show');
     Route::patch('/orders/{id}/status', [OrderController::class, 'updateStatus'])->name('admin.orders.update');
 });
-=======
-Route::resource('categories', CategoryController::class);
-Route::resource('products', ProductController::class);
-Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
-Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
-Route::get('/orders/list', [OrderController::class, 'show_all'])->name('orders.list');
-Route::get('/orders/detail/{id}', [OrderController::class, 'show'])->name('orders.show');
-Route::patch('/orders/pay/{id}', [OrderController::class, 'markAsPaid'])->name('orders.pay');
-
-
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
->>>>>>> b653dc537ba58329e120a6967fb939a5974cf7c0
