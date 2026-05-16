@@ -9,3 +9,102 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: var(--font-sans);
+    }
+
+    summary::-webkit-details-marker {
+        display: none;
+    }
+}
+
+@layer components {
+    .nav-link {
+        position: relative;
+        display: inline-flex;
+        padding: 0.75rem 0;
+        font-size: 0.875rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        color: #1f120c;
+        transition: color 150ms ease;
+    }
+
+    .nav-link::after {
+        position: absolute;
+        right: 0;
+        bottom: 0.4rem;
+        left: 0;
+        height: 2px;
+        width: 0;
+        content: '';
+        background: #f97316;
+        transition: width 180ms ease;
+    }
+
+    .nav-link:hover,
+    .nav-link-active {
+        color: #ea580c;
+    }
+
+    .nav-link:hover::after,
+    .nav-link-active::after {
+        width: 100%;
+    }
+
+    .story-outline {
+        color: transparent;
+        -webkit-text-stroke: 1.5px #e5ddd3;
+        text-stroke: 1.5px #e5ddd3;
+    }
+
+    .field {
+        width: 100%;
+        border-radius: 0.5rem;
+        border: 1px solid rgb(31 18 12 / 0.14);
+        background: #fff;
+        padding: 0.75rem 0.9rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #1f120c;
+        outline: none;
+        transition: border-color 150ms ease, box-shadow 150ms ease;
+    }
+
+    .field:focus {
+        border-color: #f97316;
+        box-shadow: 0 0 0 3px rgb(249 115 22 / 0.18);
+    }
+
+    .label {
+        display: block;
+        margin-bottom: 0.45rem;
+        font-size: 0.82rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        color: rgb(31 18 12 / 0.72);
+    }
+
+    .order-qty::-webkit-outer-spin-button,
+    .order-qty::-webkit-inner-spin-button {
+        margin: 0;
+        appearance: none;
+    }
+
+    .order-qty {
+        appearance: textfield;
+    }
+
+    .line-clamp-2 {
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+    }
+}
